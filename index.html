@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <meta name="description" content="ذِكر - أذكار الصباح والمساء وأدعية متنوعة بتصميم عصري خارق">
+    <meta name="theme-color" content="#2e7d5e">
+    <title>ذِكر | أذكار الصباح والمساء - تجربة روحانية عصرية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #2e7d5e;
+            --primary-dark: #1b5e3f;
+            --primary-light: #4cae8c;
+            --bg-light: linear-gradient(135deg, #fafbfe 0%, #f0f4f9 100%);
+            --bg-dark: linear-gradient(135deg, #1a2a2a 0%, #1e2a2f 100%);
+            --card-light: rgba(255, 255, 255, 0.95);
+            --card-dark: rgba(30, 40, 45, 0.92);
+            --text-light: #1e2f3a;
+            --text-dark: #e2f0ea;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 20px 35px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 25px 45px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-light);
+            line-height: 1.5;
+            padding: 20px;
+            min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+            position: relative;
+        }
+
+        body.dark {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        /* شريط التقدم */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            transform-origin: 0%;
+            z-index: 1000;
+            box-shadow: 0 0 10px rgba(46, 125, 87, 0.5);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* هيدر زجاجي خارق */
+        .hero {
+            text-align: center;
+            margin-bottom: 35px;
+            padding: 35px 25px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            border-radius: 70px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(46, 125, 87, 0.25);
+            transition: all 0.3s ease;
+            animation: fadeInDown 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        body.dark .hero {
+            background: rgba(30, 40, 45, 0.7);
+            border-color: rgba(76, 174, 140, 0.3);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 8vw, 3.5rem);
+            font-weight: 800;
+            background: linear-gradient(125deg, #1b5e3f, #2e7d5e, #4cae8c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero h1 i {
+            background: none;
+            color: #2e7d5e;
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hero p {
+            font-size: clamp(0.95rem, 4vw, 1.2rem);
+            color: inherit;
+            font-weight: 500;
+            max-width: 600px;
+            margin: 15px auto 0;
+            opacity: 0.85;
+        }
+
+        /* زر تبديل الوضع */
+        .theme-toggle {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--primary);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: var(--shadow-lg);
+            border: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            animation: float 3s ease infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        /* تبويبات متطورة */
+        .tabs-wrapper {
+            overflow-x: auto;
+            overflow-y: visible;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            margin-bottom: 35px;
+            padding-bottom: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            min-width: min-content;
+            padding: 5px;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: none;
+            padding: 14px 28px;
+            font-family: 'Cairo', sans-serif;
+            font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+            font-weight: 700;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            color: #2c5a44;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+            border: 1px solid rgba(46, 125, 87, 0.2);
+            box-shadow: var(--shadow-sm);
+        }
+
+        body.dark .tab-btn {
+            background: rgba(35, 55, 50, 0.85);
+            color: #cfe9e0;
+        }
+
+        .tab-btn i {
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 8px 25px rgba(46, 125, 87, 0.4);
+            transform: scale(1.02);
+        }
+
+        .tab-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* شبكة البطاقات بتأثيرات خارقة */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            transition: all 0.3s ease;
+        }
+
+        /* بطاقات بتأثير زجاجي ثلاثي الأبعاد */
+        .dua-card {
+            background: var(--card-light);
+            backdrop-filter: blur(12px);
+            border-radius: 40px;
+            padding: 24px;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            cursor: pointer;
+            animation: fadeInUp 0.6s ease backwards;
+            animation-delay: calc(var(--order, 0) * 0.05s);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body.dark .dua-card {
+            background: var(--card-dark);
+            border-color: rgba(76, 174, 140, 0.2);
+        }
+
+        .dua-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .dua-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .dua-card:active {
+            transform: scale(0.98);
+        }
+
+        @media (hover: hover) {
+            .dua-card:hover {
+                transform: translateY(-8px);
+                box-shadow: var(--shadow-xl);
+                border-color: rgba(46, 125, 87, 0.4);
+            }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid rgba(46, 125, 87, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .card-header i {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            color: var(--primary);
+            background: rgba(46, 125, 87, 0.15);
+            padding: 12px;
+            border-radius: 28px;
+            width: 55px;
+            height: 55px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .dua-card:hover .card-header i {
+            transform: rotate(5deg) scale(1.05);
+            background: rgba(46, 125, 87, 0.25);
+        }
+
+        .card-header h3 {
+            font-size: clamp(1.2rem, 4.5vw, 1.5rem);
+            font-weight: 700;
+            color: inherit;
+            line-height: 1.3;
+            flex: 1;
+        }
+
+        .dua-text {
+            font-size: clamp(1rem, 3.8vw, 1.1rem);
+            line-height: 1.7;
+            color: inherit;
+            font-weight: 500;
+            background: rgba(0, 0, 0, 0.02);
+            padding: 18px;
+            border-radius: 28px;
+            margin: 15px 0 18px 0;
+            border-right: 4px solid var(--primary);
+            word-break: break-word;
+            transition: all 0.3s;
+        }
+
+        body.dark .dua-text {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .counter-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            background: rgba(46, 125, 87, 0.1);
+            padding: 10px 15px;
+            border-radius: 60px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .count-display {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 20px;
+            border-radius: 60px;
+            color: var(--primary-dark);
+            font-family: monospace;
+            min-width: 90px;
+            text-align: center;
+            letter-spacing: 2px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        body.dark .count-display {
+            background: rgba(30, 40, 45, 0.9);
+            color: var(--primary-light);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-count, .btn-reset {
+            border: none;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            padding: 10px 22px;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .btn-count {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(46, 125, 87, 0.3);
+        }
+
+        .btn-count:active {
+            transform: scale(0.92);
+            background: var(--primary-dark);
+        }
+
+        .btn-reset {
+            background: rgba(0, 0, 0, 0.08);
+            color: inherit;
+        }
+
+        body.dark .btn-reset {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-reset:active {
+            transform: scale(0.92);
+        }
+
+        /* تذييل أنيق */
+        .footer-note {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+            color: inherit;
+            border: 1px solid rgba(46, 125, 87, 0.2);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        body.dark .footer-note {
+            background: rgba(30, 40, 45, 0.6);
+        }
+
+        .footer-note i {
+            color: var(--primary);
+            margin: 0 5px;
+            animation: pulse 1.5s ease infinite;
+        }
+
+        /* تحسينات الجوال */
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+            
+            .hero {
+                padding: 25px 16px;
+                border-radius: 45px;
+            }
+            
+            .dua-card {
+                padding: 18px;
+                border-radius: 32px;
+            }
+            
+            .card-header i {
+                width: 48px;
+                height: 48px;
+                padding: 10px;
+            }
+            
+            .btn-count, .btn-reset {
+                padding: 8px 18px;
+                font-size: 0.85rem;
+            }
+            
+            .count-display {
+                font-size: 1.2rem;
+                min-width: 75px;
+                padding: 6px 15px;
+            }
+            
+            .counter-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-group {
+                justify-content: center;
+            }
+            
+            .theme-toggle {
+                width: 48px;
+                height: 48px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.3rem;
+            }
+        }
+
+        /* شاشات كبيرة */
+        @media (min-width: 1400px) {
+            .cards-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+        }
+
+        .tabs-wrapper::-webkit-scrollbar {
+            height: 4px;
+        }
+        
+        .tabs-wrapper::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+        
+        .tabs-wrapper::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <div class="container">
+        <div class="hero">
+            <h1>
+                <i class="fas fa-mosque"></i> 
+                ذِكر
+                <i class="fas fa-seedling"></i>
+            </h1>
+            <p>أذكار الصباح والمساء وأدعية متنوعة — نور لكل يوم وطمأنينة للقلب</p>
+        </div>
+
+        <div class="tabs-wrapper">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="morning">
+                    <i class="fas fa-sun"></i> أذكار الصباح
+                </button>
+                <button class="tab-btn" data-tab="evening">
+                    <i class="fas fa-moon"></i> أذكار المساء
+                </button>
+                <button class="tab-btn" data-tab="diverse">
+                    <i class="fas fa-hands-praying"></i> أدعية متنوعة
+                </button>
+            </div>
+        </div>
+
+        <div id="cardsContainer" class="cards-grid"></div>
+
+        <div class="footer-note">
+            <i class="fas fa-heart"></i>  اللهم اجعلنا من الذاكرين الله كثيراً والذاكرات  <i class="fas fa-pray"></i><br>
+            "فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ" (البقرة 152)
+        </div>
+    </div>
+
+    <script>
+        // محتوى غني ومتنوع
+        const dhikrData = {
+            morning: [
+                { title: "دعاء الصباح", text: "اللهم بك أصبحنا، وبك أمسينا، وبك نحيا، وبك نموت، وإليك النشور.", icon: "fa-cloud-sun" },
+                { title: "العفو والعافية", text: "اللهم إني أسألك العفو والعافية في الدنيا والآخرة، اللهم إني أسألك العفو والعافية في ديني ودنياي وأهلي ومالي.", icon: "fa-shield-heart" },
+                { title: "رضيت بالله رباً", text: "رضيت بالله رباً، وبالإسلام ديناً، وبمحمد صلى الله عليه وسلم نبياً ورسولاً.", icon: "fa-flag-checkered" },
+                { title: "حسبي الله", text: "حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم (سبع مرات).", icon: "fa-crown" },
+                { title: "لا إله إلا الله", text: "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير (مائة مرة).", icon: "fa-star-and-crescent" },
+                { title: "أذكار الصباح الكبرى", text: "أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير. رب أسألك خير ما في هذا اليوم وخير ما بعده.", icon: "fa-dove" },
+                { title: "نعمة الصباح", text: "اللهم ما أصبح بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.", icon: "fa-gift" }
+            ],
+            evening: [
+                { title: "دعاء المساء", text: "اللهم بك أمسينا، وبك أصبحنا، وبك نحيا، وبك نموت، وإليك المصير.", icon: "fa-moon" },
+                { title: "نعمة المساء", text: "اللهم ما أمسى بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.", icon: "fa-gem" },
+                { title: "آية الكرسي", text: "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ...", icon: "fa-book-quran" },
+                { title: "الإخلاص والمعوذات", text: "قُلْ هُوَ اللَّهُ أَحَدٌ، قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، قُلْ أَعُوذُ بِرَبِّ النَّاسِ (ثلاث مرات).", icon: "fa-hand-peace" },
+                { title: "أعوذ بكلمات الله", text: "أعوذ بكلمات الله التامات من شر ما خلق (ثلاث مرات).", icon: "fa-shield" },
+                { title: "اللهم أجرني من النار", text: "اللهم أجرني من النار (سبع مرات).", icon: "fa-fire-extinguisher" }
+            ],
+            diverse: [
+                { title: "دعاء المغفرة", text: "اللهم اغفر لي وارحمني واهدني وعافني وارزقني", icon: "fa-hand-sparkles" },
+                { title: "دعاء الرزق", text: "اللهم إني أسألك من فضلك ورحمتك، فإنه لا يملكها إلا أنت", icon: "fa-bag-shopping" },
+                { title: "دعاء قضاء الدين", text: "اللهم اكفني بحلالك عن حرامك وأغنني بفضلك عمن سواك", icon: "fa-coins" },
+                { title: "دعاء تيسير الأمور", text: "اللهم لا سهل إلا ما جعلته سهلاً، وأنت تجعل الحزن إذا شئت سهلاً", icon: "fa-road" },
+                { title: "دعاء الشفاء", text: "اللهم رب الناس، أذهب البأس، اشفِ أنت الشافي، لا شفاء إلا شفاؤك، شفاءً لا يغادر سقماً", icon: "fa-heartbeat" },
+                { title: "دعاء التوكل", text: "اللهم إني توكلت عليك وبك أستعين لا مانع للشر إلا أنت ولا جالب للخير إلا أنت، اللهم أعني ويسر أمري وفرج كربي وأكثر رزقي يا رزاق يا كريم", icon: "fa-praying-hands" },
+                { title: "سيد الاستغفار", text: "اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي وأبوء بذنبي فاغفر لي.", icon: "fa-mosque" },
+                { title: "دعاء الكرب", text: "لا إله إلا الله العظيم الحليم، لا إله إلا الله رب العرش العظيم، لا إله إلا الله رب السماوات ورب الأرض رب العرش الكريم.", icon: "fa-mountain" }
+            ]
+        };
+
+        // LocalStorage
+        function getCounterKey(cat, idx) { return `dhikr_pro_${cat}_${idx}`; }
+        function loadCounter(cat, idx) { return parseInt(localStorage.getItem(getCounterKey(cat, idx))) || 0; }
+        function saveCounter(cat, idx, val) { localStorage.setItem(getCounterKey(cat, idx), val); }
+        
+        function increment(cat, idx) { let c = loadCounter(cat, idx) + 1; saveCounter(cat, idx, c); updateCardCounter(cat, idx, c); }
+        function reset(cat, idx) { saveCounter(cat, idx, 0); updateCardCounter(cat, idx, 0); }
+        
+        function updateCardCounter(cat, idx, val) {
+            const card = document.querySelector(`.dua-card[data-category='${cat}'][data-idx='${idx}']`);
+            if (card) card.querySelector('.count-display').innerText = val;
+        }
+
+        function escapeHtml(s) { return s.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
+
+        let currentCategory = 'morning';
+        
+        function renderCards(category) {
+            currentCategory = category;
+            const container = document.getElementById('cardsContainer');
+            const items = dhikrData[category];
+            if (!items) return;
+            
+            container.style.opacity = '0';
+            setTimeout(() => {
+                let html = '';
+                items.forEach((item, idx) => {
+                    const count = loadCounter(category, idx);
+                    html += `
+                        <div class="dua-card" data-category="${category}" data-idx="${idx}" style="--order: ${idx}">
+                            <div class="card-header">
+                                <i class="fas ${item.icon}"></i>
+                                <h3>${escapeHtml(item.title)}</h3>
+                            </div>
+                            <div class="dua-text">${escapeHtml(item.text)}</div>
+                            <div class="counter-box">
+                                <span class="count-display">${count}</span>
+                                <div class="btn-group">
+                                    <button class="btn-count"><i class="fas fa-check-circle"></i> اذكر</button>
+                                    <button class="btn-reset"><i class="fas fa-undo-alt"></i> إعادة</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+                container.style.opacity = '1';
+                
+                document.querySelectorAll(`.dua-card[data-category='${category}']`).forEach(card => {
+                    const idx = parseInt(card.dataset.idx);
+                    const incBtn = card.querySelector('.btn-count');
+                    const resetBtn = card.querySelector('.btn-reset');
+                    incBtn.onclick = (e) => { e.stopPropagation(); increment(category, idx); };
+                    resetBtn.onclick = (e) => { e.stopPropagation(); reset(category, idx); };
+                });
+            }, 100);
+        }
+
+        // شريط التقدم
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.transform = `scaleX(${scrolled / 100})`;
+        });
+
+        // الوضع المظلم
+        const themeToggle = document.getElementById('themeToggle');
+        const isDark = localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) document.body.classList.add('dark');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            const icon = themeToggle.querySelector('i');
+            icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
+        });
+        themeToggle.querySelector('i').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+
+        // التبويبات
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderCards(btn.dataset.tab);
+            });
+        });
+
+        renderCards('morning');
+    </script>
+</body>
+</html>
